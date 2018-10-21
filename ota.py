@@ -5,17 +5,17 @@ def getSize(filename):
     return st.st_size
 
 # constants
-filename = 'syberia_gemini-v1.2-20181008-0649-OFFICIAL.zip'
-zip_path = '/home/android/syberia/out/target/product/gemini/'
+filename = 'syberia_land-v1.2-20181013-1614-OFFICIAL.zip'
+zip_path = '/home/weritos94/weritos/Syberia/out/target/product/land/'
 changelog = "changelog.txt"
-developer = 'DennySPb & Blinoff82'
+developer = 'Weritos'
 website_url = r'http://syberiaos.com'
 news_url = r'http://github.com/syberia-project'
-url= r'http://178.128.74.208/OTA/'
+url= r'https://downloads.sourceforge.net/project/syberiaos/Land/syberia_land-v1.2-20181013-1614-OFFICIAL.zip?r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fsyberiaos%2Ffiles%2FLand%2Fsyberia_land-v1.2-20181013-1614-OFFICIAL.zip%2Fdownload&ts=1539459328'
 error = 'false'
 developer_url = r'http://github.com/syberia-project'
-donate_url = r'https://www.paypal.me/blinoff82'
-forum_url = r'https://forum.xda-developers.com/mi-5/development/rom-syberia-project-t3833868'
+donate_url = r'https://syberiaos.com/links'
+forum_url = r'https://forum.xda-developers.com/xiaomi-redmi-3s/development/9-0-syberia-os-9-0-t3837103'
 
 ota_data = {}
 md5file = zip_path + filename + ".md5sum"
@@ -39,12 +39,12 @@ raw_md5 = open(md5file,'r', encoding='cp866').readline()
 build_date = re.search(r"\b\d{8}\b", filename).group(0)
 device = re.search(r"syberia_([^-]*)",filename).group(1)
 md5 = raw_md5.rsplit(None, 1)[0]
-
 # fill json struct
+
 ota_data=addons
 ota_data['filename'] = filename
 ota_data['changelog'] = raw_changelog
-ota_data['size'] = str(getSize(zip_path+filename))
+ota_data['filesize'] = str(getSize(zip_path+filename))
 ota_data['md5'] = md5;
 ota_data['build_date'] = build_date
 ota_data['device'] = device
@@ -56,8 +56,6 @@ ota_data['developer'] = developer
 ota_data['error'] = error
 ota_data['website_url'] = website_url
 ota_data['forum_url'] = forum_url
-
-#write to file
 print('Writting json data to ' + device+'.json')
 with open(device+'.json', 'w') as f:
   json.dump(ota_data, f, ensure_ascii=False)

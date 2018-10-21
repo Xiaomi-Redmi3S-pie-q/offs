@@ -1,0 +1,9 @@
+* Syberia OS Upstream
+* Added default Google Camera
+* This fixes text messages via volte
+* Restore imssettings.apk to stock
+* Edit ImsServiceStateReceiver.smali to disable the ims status
+notification (Thanks @GuaiYiHU)
+* Add hacks for unsupported FPS bug
+* Del libcameraservice shim 
+* Mark camera-related processes as API level 23
